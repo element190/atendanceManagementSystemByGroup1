@@ -1,0 +1,84 @@
+.interface{
+  margin-left: 10px;
+  display: flex;
+  width: 95%;
+  height: 100%;
+  margin-top: 50px;
+}
+
+.division{
+  width:50%;
+  margin: 80px;
+}
+
+.divimage{
+  width: 612px;
+  height: 100%;
+  border: 2px solid green;
+  margin-left: 150px;
+  margin-top:20px;
+  background: url(../src/assests/images/istockphoto-1421053049-612x612.jpg);
+  background-repeat: no-repeat;
+}
+
+.loginsign{
+  background-color: blue;
+  height:30px;
+  width: 70px;
+  border-radius: 5px;
+  margin-left: 340px;
+  align-items: center;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.categories{
+  display: flex;
+  margin-bottom: 50px;
+}
+
+
+.input{
+  font-size: larger;
+  width: 400px;
+  height: 30px;
+  margin-bottom: 30px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
