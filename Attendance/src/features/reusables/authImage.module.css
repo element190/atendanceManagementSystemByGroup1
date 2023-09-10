@@ -1,0 +1,11 @@
+.image img{
+    width: 100%;
+    height: 99.6vh;
+}
+
+@media screen and  (max-width: 829px){
+    .image img{
+        width: 100%;
+        height: 40vh;
+    }
+}
