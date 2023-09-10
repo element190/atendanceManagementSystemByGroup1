@@ -5,7 +5,6 @@ import Card from '../../UI/card/Card';
 import Button from '../../UI/button/Button';
 import NavigationButton from '../../UI/button/NavigationButton';
 import { useNavigate } from 'react-router-dom';
-// import img from "../../../../src/assests/images/istockphoto-1421053049-612x612.jpg";
 
 const Login =() => {
     
@@ -50,13 +49,6 @@ const Login =() => {
 
     // const myStyle={
     //     // backgroundImage: `url(${img})` ,
-    //     height:'100vh',
-    //     // marginTop:'-70px',
-    //     // marginBottom: "-70px",
-    //     margin: "-56px",
-    //     fontSize:'50px',
-    //     backgroundSize: 'cover',
-    //     backgroundRepeat: 'no-repeat',
     // };
 
   return (
