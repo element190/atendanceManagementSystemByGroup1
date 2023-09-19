@@ -93,16 +93,17 @@ const SignUp = () => {
               />
             </div>
             <label htmlFor="scv">
-              SCV <span>*</span>
+              SCV 
+              {/* <span>*</span> */}
             </label>
             <div>
               <input
-                placeholder="scv"
+                placeholder="Natives only"
                 type="text"
                 name="scv"
                 onChange={onChangleHandler}
                 value={data.scv}
-                required
+                // required
               />
             </div>
             <label htmlFor="password">
@@ -110,7 +111,7 @@ const SignUp = () => {
             </label>
             <div>
               <input
-                placeholder="wifi password"
+                // placeholder="password"
                 type="password"
                 name="password"
                 onChange={onChangleHandler}
