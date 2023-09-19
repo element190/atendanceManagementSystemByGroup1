@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, {useState } from 'react';
 import classes from "./styles/login.module.css"
 import AuthImage from "../../reusables/AuthImages";
 import Card from '../../UI/card/Card';
@@ -7,50 +7,76 @@ import NavigationButton from '../../UI/button/NavigationButton';
 import { useNavigate } from 'react-router-dom';
 
 const Login =() => {
-    
-     const initialValue = {
-        userName: '',
-        password: '',
+  const initialValue = {
+    scv: "",
+    password: "",
+  };
+
+  const [data, setData] = useState(initialValue);
+  const navigate = useNavigate();
+
+  const onChangleHandler = (e) => {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSumbitHandler = async (e) => {
+    e.preventDefault();
+    const userDetails = {
+      scv: data.scv,
+      password: data.password,
+    };
+
+    const response = await axios.post(
+      "http://localhost:8080/api/v1/user/login",
+      userDetails
+    );
+
+    if (response.status === 200) {
+      console.log("BC res -->", response.data);
     }
+  };
 
-    const [data, setData] = useState(initialValue);
-    const navigate = useNavigate()
+  const onClickHandler = () => {
+    navigate("/Signup");
+  };
 
-    const onChangleHandler = (e)=>{
-      setData((prev)=>({
-          ...prev,[e.target.name] : e.target.value
-      }))
-    }
+  
+        // const requestOptions = {
+        //   method: "POST", 
+        //   headers: {
+        //     "Content-Type": "application/json", 
+        //   },
+        //   body: JSON.stringify(jsonData), 
+        // };
 
-     const onClickHandler = () => {
-        navigate("/Signup")
-     };
+        // fetch("https://example.com/api/endpoint", requestOptions)
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     console.log("Response data:", data);
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error:", error);
+        //   });
 
-    const onSumbitHandler = async (e)=>{
-        e.preventDefault();
-        const userDetails = {
-            userName: data.userName,
-            password: data.password
-        }
-    }
+  //     useEffect(() => {
+  //     const fetchData = async () => {
+  //       try {
+  //         const response = await fetch("http://localhost:8080/api/v1/user/login");
+  //         const users = await response.json();
+  //         setUsers(users);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
+  //     fetchData();
+  //   }, []);
 
-    
-//     useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch(url);
-//         const users = await response.json();
-//         setUsers(users);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     fetchData();
-//   }, []);
-
-    // const myStyle={
-    //     // backgroundImage: `url(${img})` ,
-    // };
+  // const myStyle={
+  //     // backgroundImage: `url(${img})` ,
+  // };
 
   return (
     <Card>
@@ -63,13 +89,13 @@ const Login =() => {
           <p className={classes.loginText}>LOGIN</p>
           <form action="" onSubmit={onSumbitHandler} className={classes.form}>
             <label htmlFor="">
-              Username <span>*</span>
+              SCV <span>*</span>
             </label>
             <br></br>
             <input
               type="text"
-              name="username"
-              placeholder="wifi username"
+              name="Scv"
+              placeholder="scv"
               className={classes.input}
               onChange={onChangleHandler}
               required

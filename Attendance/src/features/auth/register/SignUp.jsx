@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import AuthImage from "../../reusables/AuthImages";
 import Button from "../../UI/button/Button";
 // import axios from "axios";
@@ -26,6 +26,17 @@ const SignUp = () => {
       }))
     }
 
+     const [screenWidth, setScreenWidth] = useState(0);
+     const [screenHeight, setScreenHeight] = useState(0);
+
+     useEffect(() => {
+       const screenWidth = window.screen.width;
+       const screenHeight = window.screen.height;
+
+       setScreenWidth(screenWidth);
+       setScreenHeight(screenHeight);
+     }, []);
+
     // const onClickHandler = () =>{
     //    setGoToLogin(true)
     // }
@@ -38,8 +49,10 @@ const SignUp = () => {
         e.preventDefault();
         const userDetails = {
             email: data.email,
-            userName: data.userName,
-            password: data.password
+            userName: data.scv,
+            password: data.password,
+            width: screenWidth,
+            height: screenHeight
         }
 
          console.log(userDetails);
@@ -79,16 +92,16 @@ const SignUp = () => {
                 required
               />
             </div>
-            <label htmlFor="username">
-              Username <span>*</span>
+            <label htmlFor="scv">
+              SCV <span>*</span>
             </label>
             <div>
               <input
-                placeholder="wifi username"
+                placeholder="scv"
                 type="text"
-                name="userName"
+                name="scv"
                 onChange={onChangleHandler}
-                value={data.userName}
+                value={data.scv}
                 required
               />
             </div>
