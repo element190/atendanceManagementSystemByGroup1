@@ -1,7 +1,11 @@
 import SignUp from './features/auth/register/SignUp';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './features/auth/login/Login';
-// import SignUp from "./features/auth/register/SignUp";
+import signUp from "./features/auth/register/SignUp";
+
+// import SideBar from "./features/layout/NavBar/SideBar";
+
+
 
 function App() {
   return (
@@ -9,12 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/Signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
-    // <Login></Login>
-
-    // <SignUp></SignUp>
+  //  <SideBar></SideBar>
   );
 }
 
