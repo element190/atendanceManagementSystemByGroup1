@@ -12,7 +12,7 @@ const SignUp = () => {
 
     const initialValue = {
         email: '',
-        userName: '',
+        scv: '',
         password: '',
     }
 
@@ -48,11 +48,11 @@ const SignUp = () => {
     const onSumbitHandler = async (e)=>{
         e.preventDefault();
         const userDetails = {
-            email: data.email,
-            userName: data.scv,
+            semicolonEmail: data.email,
+            scv: data.scv,
             password: data.password,
-            width: screenWidth,
-            height: screenHeight
+            screenWidth: screenWidth,
+            screenHeight: screenHeight
         }
 
          console.log(userDetails);
