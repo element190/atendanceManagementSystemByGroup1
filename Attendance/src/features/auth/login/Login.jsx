@@ -5,6 +5,7 @@ import Card from '../../UI/card/Card';
 import Button from '../../UI/button/Button';
 import NavigationButton from '../../UI/button/NavigationButton';
 import { useNavigate } from 'react-router-dom';
+// import axios from 'axios';
 
 const Login =() => {
   const initialValue = {
@@ -13,6 +14,7 @@ const Login =() => {
   };
 
   const [data, setData] = useState(initialValue);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const onChangleHandler = (e) => {
@@ -29,14 +31,23 @@ const Login =() => {
       password: data.password,
     };
 
-    const response = await axios.post(
-      "http://localhost:8080/api/v1/user/login",
-      userDetails
-    );
+    fetch("https://example.com/api/endpoint", userDetails)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Response data:", data);
+        })
+        .catch((error) => {
+          setError(error);
+        });
 
-    if (response.status === 200) {
-      console.log("BC res -->", response.data);
-    }
+    // const response = await axios.post(
+    //   "http://localhost:8080/api/v1/user/login",
+    //   userDetails
+    // );
+
+    // if (response.status === 200) {
+    //   console.log("BC res -->", response.data);
+    // }
   };
 
   const onClickHandler = () => {
@@ -108,12 +119,13 @@ const Login =() => {
             <br></br>
             <input
               type="password"
-              placeholder="wifi Password"
-              name="pasword"
+              placeholder=""
+              name="password"
               onChange={onChangleHandler}
               className={classes.input}
               required
             />
+            {error && <h1>{error}</h1>}
             <br></br>
             <br></br>
             <Button>Login</Button>
