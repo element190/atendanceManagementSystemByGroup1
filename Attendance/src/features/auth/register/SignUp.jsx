@@ -1,75 +1,81 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import AuthImage from "../../reusables/AuthImages";
 import Button from "../../UI/button/Button";
-// import axios from "axios";
-import classes from "./styles/signUp.module.css"
+import axios from "axios";
+import classes from "./styles/signUp.module.css";
 import { useNavigate } from "react-router-dom";
 import Card from "../../UI/card/Card";
 import NavigationButton from "../../UI/button/NavigationButton";
 // import Login from "../login/Login";
 
 const SignUp = () => {
+  const initialValue = {
+    email: "",
+    scv: "",
+    password: "",
+  };
 
-    const initialValue = {
-        email: '',
-        scv: '',
-        password: '',
-    }
+  const [data, setData] = useState(initialValue);
+  const [error, setError] = useState(null);
+  // const [goToLogin, setGoToLogin] = useState(false)
+  const navigate = useNavigate();
 
-    const [data, setData] = useState(initialValue);
-    // const [goToLogin, setGoToLogin] = useState(false)
-    const navigate = useNavigate()
+  const onChangleHandler = (e) => {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-    const onChangleHandler = (e)=>{
-      setData((prev)=>({
-          ...prev,[e.target.name] : e.target.value
-      }))
-    }
+  const [screenWidth, setScreenWidth] = useState(0);
+  const [screenHeight, setScreenHeight] = useState(0);
 
-     const [screenWidth, setScreenWidth] = useState(0);
-     const [screenHeight, setScreenHeight] = useState(0);
+  useEffect(() => {
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
 
-     useEffect(() => {
-       const screenWidth = window.screen.width;
-       const screenHeight = window.screen.height;
+    setScreenWidth(screenWidth);
+    setScreenHeight(screenHeight);
+  }, []);
 
-       setScreenWidth(screenWidth);
-       setScreenHeight(screenHeight);
-     }, []);
+  // const onClickHandler = () =>{
+  //    setGoToLogin(true)
+  // }
 
-    // const onClickHandler = () =>{
-    //    setGoToLogin(true)
-    // }
+  //  if (goToLogin) {
+  //    return <Navigate to="/login" />;
+  //  }
 
-    //  if (goToLogin) {
-    //    return <Navigate to="/login" />;
-    //  }
+  const onSumbitHandler = async (e) => {
+    e.preventDefault();
+    const userDetails = {
+      semicolonEmail: data.email,
+      scv: data.scv,
+      password: data.password,
+      screenWidth: screenWidth,
+      screenHeight: screenHeight,
+    };
 
-    const onSumbitHandler = async (e)=>{
-        e.preventDefault();
-        const userDetails = {
-            semicolonEmail: data.email,
-            scv: data.scv,
-            password: data.password,
-            screenWidth: screenWidth,
-            screenHeight: screenHeight
+    console.log(userDetails);
+
+    await axios.post("https://foodapp-3a5aa-default-rtdb.firebaseio.com/orders.json'",
+        userDetails
+      )
+      .then((response) => {
+        console.log("Data sent successfully:", response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          setError(`Response Error: ${error.response.status}`);
+          //  console.log(userDetails);
+          //  if (response.status === 200) {
+          //    console.log("BC res -->", response.data);
+          //  }
         }
-
-         console.log(userDetails);
-
-        //  const response = await axios.post(
-        //    "http://localhost:8080/api/v1/user/register",
-        //    userDetails
-        //  );
-        //  console.log(userDetails);
-        //  if (response.status === 200) {
-        //    console.log("BC res -->", response.data);
-        //  }
-
-        //  setData("");
-         navigate("/login");
-    }    
-
+      });
+      setData("");
+      navigate("/login");
+  };
   return (
     <Card>
       <div className={classes.mainContainer}>
@@ -93,7 +99,7 @@ const SignUp = () => {
               />
             </div>
             <label htmlFor="scv">
-              SCV 
+              SCV
               {/* <span>*</span> */}
             </label>
             <div>
@@ -111,7 +117,11 @@ const SignUp = () => {
             </label>
             <div>
               <input
+
                 // placeholder="password"
+
+                placeholder=""
+
                 type="password"
                 name="password"
                 onChange={onChangleHandler}
@@ -119,6 +129,7 @@ const SignUp = () => {
                 required
               />
             </div>
+            {error && <h1>{error}</h1>}
             <Button>Sign up</Button>
           </form>
           <div>
