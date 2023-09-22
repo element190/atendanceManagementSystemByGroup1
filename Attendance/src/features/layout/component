@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Attendance</title>
+</head>
+<body>
+    <h1>Edit Attendance</h1>
+    
+    <table id="attendanceTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Student</th>
+                <th>Attendance Status</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Attendance records will be populated here dynamically -->
+        </tbody>
+    </table>
+
+    <div id="editForm" style="display: none;">
+        <h2>Edit Attendance</h2>
+        <label for="newStatus">New Status:</label>
+        <select id="newStatus">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+        <button id="saveButton">Save</button>
+        <button id="cancelButton">Cancel</button>
+    </div>
+
+    <script src="script.js">
+    // Sample attendance data
+        const attendanceData = [
+            { date: '2023-09-19', student: 'John Doe', status: 'Present' },
+            { date: '2023-09-19', student: 'Jane Smith', status: 'Absent' },
+            // Add more attendance records here
+        ];
+        
+        const tableBody = document.querySelector('#attendanceTable tbody');
+        const editForm = document.querySelector('#editForm');
+        const newStatusInput = document.querySelector('#newStatus');
+        const saveButton = document.querySelector('#saveButton');
+        const cancelButton = document.querySelector('#cancelButton');
+        let selectedIndex = -1;
+        
+        // Function to populate the table with attendance data
+        function populateTable() {
+            tableBody.innerHTML = '';
+            attendanceData.forEach((record, index) => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${record.date}</td>
+                    <td>${record.student}</td>
+                    <td>${record.status}</td>
+                    <td><button class="editButton" data-index="${index}">Edit</button></td>
+                `;
+            });
+        
+            // Add event listeners to the "Edit" buttons
+            const editButtons = document.querySelectorAll('.editButton');
+            editButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    selectedIndex = parseInt(button.getAttribute('data-index'));
+                    editForm.style.display = 'block';
+                    newStatusInput.value = attendanceData[selectedIndex].status;
+                });
+            });
+        }
+        
+        // Function to save edited attendance
+        function saveAttendance() {
+            if (selectedIndex !== -1) {
+                attendanceData[selectedIndex].status = newStatusInput.value;
+                populateTable();
+                editForm.style.display = 'none';
+                selectedIndex = -1;
+            }
+        }
+        
+        // Event listeners
+        saveButton.addEventListener('click', saveAttendance);
+        cancelButton.addEventListener('click', () => {
+            editForm.style.display = 'none';
+            selectedIndex = -1;
+        });
+        
+        // Initialize the table
+        populateTable();
+        </script>
+</body>
+</html>
