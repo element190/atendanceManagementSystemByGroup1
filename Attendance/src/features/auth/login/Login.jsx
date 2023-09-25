@@ -3,8 +3,8 @@ import classes from "./styles/login.module.css"
 import AuthImage from "../../reusables/AuthImages";
 import Card from '../../UI/card/Card';
 import Button from '../../UI/button/Button';
-import NavigationButton from '../../UI/button/NavigationButton';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import semiImage from '../../../assests/images/semi.png'
 // import axios from 'axios';
 
 const Login =() => {
@@ -95,8 +95,14 @@ const Login =() => {
         <div>
           <AuthImage />
         </div>
-
         <div className={classes.formContainer}>
+          <div className={classes.flexLogoText}>
+            <div className={classes.logo}>
+              {/* <h2>{semiImage}</h2> */}
+              <img src={semiImage} alt="Semicolon image" />
+            </div>
+            <h1>SEMICOLON</h1>
+          </div>
           <p className={classes.loginText}>LOGIN</p>
           <form action="" onSubmit={onSumbitHandler} className={classes.form}>
             <label htmlFor="">
@@ -128,12 +134,17 @@ const Login =() => {
             {error && <h1>{error}</h1>}
             <br></br>
             <br></br>
-            <Button>Login</Button>
+            <Button className={classes.button}>Login</Button>
           </form>
-          <div>
-            <NavigationButton onClick={onClickHandler}>
+          <div className={classes.flexBtn}>
+            <Button className={classes.registerBtn} onClick={onClickHandler}>
               Register
-            </NavigationButton>
+            </Button>
+            {/* <Button className={classes.registerBtn} onClick={onClickHandler}> */}
+            <Link className={classes.registerBtn} to={"/forgottenPassword"}>
+              forgotten password
+            </Link>
+            {/* </Button> */}
           </div>
         </div>
       </div>

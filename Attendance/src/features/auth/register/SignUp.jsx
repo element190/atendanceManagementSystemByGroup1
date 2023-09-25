@@ -5,7 +5,8 @@ import axios from "axios";
 import classes from "./styles/signUp.module.css";
 import { useNavigate } from "react-router-dom";
 import Card from "../../UI/card/Card";
-import NavigationButton from "../../UI/button/NavigationButton";
+import semiImage from "../../../assests/images/semi.png"
+// import NavigationButton from "../../UI/button/NavigationButton";
 // import Login from "../login/Login";
 
 const SignUp = () => {
@@ -46,6 +47,8 @@ const SignUp = () => {
   //    return <Navigate to="/login" />;
   //  }
 
+ 
+
   const onSumbitHandler = async (e) => {
     e.preventDefault();
     const userDetails = {
@@ -56,13 +59,18 @@ const SignUp = () => {
       screenHeight: screenHeight,
     };
 
-    console.log(userDetails);
+    console.log(userDetails.semicolonEmail.includes("native"));
 
-    await axios.post("https://foodapp-3a5aa-default-rtdb.firebaseio.com/orders.json'",
+    await axios.post("https://foodapp-3a5aa-default-rtdb.firebaseio.com/orders.json",
         userDetails
       )
       .then((response) => {
         console.log("Data sent successfully:", response.data);
+        if(userDetails.semicolonEmail.includes("native")){
+          navigate("/home")
+        }else{
+          navigate("/login");
+        }       
       })
       .catch((error) => {
         if (error.response) {
@@ -74,7 +82,6 @@ const SignUp = () => {
         }
       });
       setData("");
-      navigate("/login");
   };
   return (
     <Card>
@@ -83,6 +90,13 @@ const SignUp = () => {
           <AuthImage />
         </div>
         <div className={classes.formContainer}>
+          <div className={classes.flexLogoText}>
+            <div className={classes.logo}>
+              {/* <h2>{semiImage}</h2> */}
+              <img src={semiImage} alt="Semicolon image" />
+            </div>
+            <h1>SEMICOLON</h1>
+          </div>
           <p className={classes.register}>REGISTER</p>
           <form action="" className={classes.form} onSubmit={onSumbitHandler}>
             <label htmlFor="email">
@@ -129,17 +143,31 @@ const SignUp = () => {
                 required
               />
             </div>
+            <label htmlFor="password">
+              Confirm password <span>*</span>
+            </label>
+            <div>
+              <input
+                placeholder=""
+                type="password"
+                name="Confirmpassword"
+                onChange={onChangleHandler}
+                // value={data.password}
+                required
+              />
+            </div>
             {error && <h1>{error}</h1>}
-            <Button>Sign up</Button>
+            <Button className={classes.button}>Sign up</Button>
           </form>
           <div>
-            <NavigationButton
+            <Button
+              className={classes.loginBtn}
               onClick={() => {
                 navigate("/login");
               }}
             >
               Login
-            </NavigationButton>
+            </Button>
           </div>
         </div>
       </div>
