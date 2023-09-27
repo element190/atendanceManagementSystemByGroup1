@@ -6,20 +6,31 @@ import classes from "./styles/signUp.module.css";
 import { useNavigate } from "react-router-dom";
 import Card from "../../UI/card/Card";
 import semiImage from "../../../assests/images/semi.png"
-// import NavigationButton from "../../UI/button/NavigationButton";
-// import Login from "../login/Login";
 
 const SignUp = () => {
   const initialValue = {
     email: "",
     scv: "",
-    password: "",
+    // password: "",
+    // confirmPassword: "",
   };
 
   const [data, setData] = useState(initialValue);
   const [error, setError] = useState(null);
-  // const [goToLogin, setGoToLogin] = useState(false)
+  const [passwordError, setPasswordError] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [password, setPassword] = useState("");
+  const [verifiedPassword, setVerifyPassword] = useState("")
+
   const navigate = useNavigate();
+
+  // const validatePassword = () =>{
+  //   if(confirmPassword === password){
+  //     setVerifyPassword(confirmPassword)
+  //   }else{
+  //     setPasswordError("Your password doesn't match")
+  //   }
+  // }
 
   const onChangleHandler = (e) => {
     setData((prev) => ({
@@ -37,51 +48,86 @@ const SignUp = () => {
 
     setScreenWidth(screenWidth);
     setScreenHeight(screenHeight);
-  }, []);
+  }, []); 
 
-  // const onClickHandler = () =>{
-  //    setGoToLogin(true)
-  // }
 
-  //  if (goToLogin) {
-  //    return <Navigate to="/login" />;
-  //  }
-
- 
 
   const onSumbitHandler = async (e) => {
     e.preventDefault();
+
+     if (confirmPassword === password) {
+       setVerifyPassword(confirmPassword);
+     } else {
+       setPasswordError("Your password doesn't match");
+       return;
+     }
+
     const userDetails = {
       semicolonEmail: data.email,
       scv: data.scv,
-      password: data.password,
+      password: verifiedPassword,
+      // password: data.password,
       screenWidth: screenWidth,
       screenHeight: screenHeight,
     };
 
     console.log(userDetails.semicolonEmail.includes("native"));
 
-    await axios.post("https://foodapp-3a5aa-default-rtdb.firebaseio.com/orders.json",
+    try {
+      const response = await axios.post(
+        "http://localhost:8092/api/v1/user/register",
         userDetails
-      )
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-        if(userDetails.semicolonEmail.includes("native")){
-          navigate("/home")
-        }else{
-          navigate("/login");
-        }       
-      })
-      .catch((error) => {
-        if (error.response) {
-          setError(`Response Error: ${error.response.status}`);
-          //  console.log(userDetails);
-          //  if (response.status === 200) {
-          //    console.log("BC res -->", response.data);
-          //  }
-        }
-      });
-      setData("");
+      );
+
+      console.log("Data sent successfully:", response.data);
+      console.log("response", response.status)
+
+      if (userDetails.semicolonEmail.includes("native")) {
+        navigate("/takeAttendance");
+      } else {
+        navigate("/adminHome");
+      }
+    } catch (error) {
+    setError(error.response.data.data);
+    console.log(error.response.data.data);
+    }
+    setData("");
+
+
+
+    // e.preventDefault();
+    //  if (data.password !== confirmPassword) {
+    //    setPasswordError("Your password doesn't match");
+
+    //    return;
+    //  }
+    // const userDetails = {
+    //   semicolonEmail: data.email,
+    //   scv: data.scv,
+    //   password: data.password,
+    //   screenWidth: screenWidth,
+    //   screenHeight: screenHeight,
+    // };
+
+    // console.log(userDetails.semicolonEmail.includes("native"));
+
+    // await axios.post("https://foodapp-3a5aa-default-rtdb.firebaseio.com/orders.json",
+    //     userDetails
+    //   )
+    //   .then((response) => {
+    //     console.log("Data sent successfully:", response.data);
+    //     if(userDetails.semicolonEmail.includes("native")){
+    //       navigate("/takeAttendance");
+    //     }else{
+    //       navigate("/adminHome");
+    //     }       
+    //   })
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       setError(`Response Error: ${error.response.status}`);
+    //     }
+    //   });
+    //   setData("");
   };
   return (
     <Card>
@@ -92,19 +138,19 @@ const SignUp = () => {
         <div className={classes.formContainer}>
           <div className={classes.flexLogoText}>
             <div className={classes.logo}>
-              {/* <h2>{semiImage}</h2> */}
               <img src={semiImage} alt="Semicolon image" />
             </div>
             <h1>SEMICOLON</h1>
           </div>
           <p className={classes.register}>REGISTER</p>
           <form action="" className={classes.form} onSubmit={onSumbitHandler}>
+            {error && <h2 className={classes.error}>{error}</h2>}
             <label htmlFor="email">
               Email <span>*</span>
             </label>
             <div>
               <input
-                placeholder="semicolon's email"
+                placeholder="semicolon email"
                 type="email"
                 name="email"
                 onChange={onChangleHandler}
@@ -126,6 +172,7 @@ const SignUp = () => {
                 // required
               />
             </div>
+            {passwordError && <p className={classes.error}>{passwordError}</p>}
             <label htmlFor="password">
               Password <span>*</span>
             </label>
@@ -134,8 +181,8 @@ const SignUp = () => {
                 placeholder=""
                 type="password"
                 name="password"
-                onChange={onChangleHandler}
-                value={data.password}
+                onChange={(e) => setPassword(e.target.value)}
+                // value={data.password}
                 required
               />
             </div>
@@ -144,22 +191,20 @@ const SignUp = () => {
             </label>
             <div>
               <input
-                placeholder=""
                 type="password"
-                name="Confirmpassword"
-                onChange={onChangleHandler}
-                // value={data.password}
+                // value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder=""
                 required
               />
             </div>
-            {error && <h1>{error}</h1>}
             <Button className={classes.button}>Sign up</Button>
           </form>
           <div>
             <Button
               className={classes.loginBtn}
               onClick={() => {
-                navigate("/login");
+                navigate("/");
               }}
             >
               Login

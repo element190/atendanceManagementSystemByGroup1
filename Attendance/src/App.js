@@ -20,21 +20,22 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SignUp />} />
+        {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/setAttendanceTime" element={<SetTime />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/sideBar" element={<SideBar />} />
+        {/* <Route path="/sideBar" element={<SideBar />} /> */}
         <Route path="/generateNativeAttendanceReport" element={<GenerateNativeAttendance/>}/>
         <Route path="/generateCohortAttendanceReport" element={<GenerateCohortAttendance/>}/>
         <Route path="/cohortAttendance" element={<DisableNativesAttendance/>}/>
         <Route path="/nativeAttendance" element={<EnableNativesAttendance/>}/>
         <Route path="/forgottenPassword" element={<ForgottenPassword/>}/>
         <Route path ="/confirmationCode" element ={<ConfirmForgottenPasswordCode/>}/>
-        <Route path="/nativeSideBar" element={<NativeSideBar/>} />
-        <Route path="/takeAttendance" element={<TakeAttendance/>} />
+        {/* <Route path="/nativeSideBar" element={<NativeSideBar/>} /> */}
+        <Route path="/native/takeAttendance" element={<TakeAttendance/>} />
         <Route path="/generateNativeAttendance" element={<NativeGenerateAttendanceReport/>} />
+        <Route path="/resetDevice" element={<NativeGenerateAttendanceReport/>} />       
       </Routes>
     </Router>
   );
