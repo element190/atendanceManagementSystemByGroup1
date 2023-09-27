@@ -155,14 +155,21 @@ const Login = () => {
         "https://elitestracker-production.up.railway.app/api/v1/user/loginUser",
         userDetails
       );
+      console.log(response.data)
+      console.log( JSON.stringify(response));
+      if(response.status === 200){
+        sessionStorage.setItem('semicolonEmail', JSON.stringify(response.data.semicolonEmail))
+        sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
+      }
 
-      // if (response.data.semicolonEmail.includes('native')) {
-      //   console.log('I am here');
-      //   navigate('/takeAttendance');
-      // } else {
-      //   navigate('/adminHome');
-      // }
+      if (response.data.semicolonEmail.includes('native')) {
+        console.log('I am here');
+        navigate('/native/takeAttendance');
+      } else {
+        navigate('/adminHome');
+      }
     } catch (error) {
+      console.log(error)
       setError(error.response.data.data);
       console.log(error.response.data.data)
     }
