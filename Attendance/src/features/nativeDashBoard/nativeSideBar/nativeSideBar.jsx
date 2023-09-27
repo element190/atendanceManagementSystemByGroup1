@@ -13,7 +13,7 @@ const NativeSideBar = () => {
       <div className={classes.sideBarItems}>
         <div className={classes.linkContainer}>
           <Link to={"/takeAttendance"} className={classes.Link}>
-           Take Attendance
+            Take Attendance
           </Link>
         </div>
         <div className={classes.linkContainer}>
@@ -23,7 +23,12 @@ const NativeSideBar = () => {
         </div>
         <div className={classes.linkContainer}>
           <Link to={"/checkAttendanceHistory"} className={classes.Link}>
-           Check Attendance History
+            Check Attendance History
+          </Link>
+        </div>
+        <div className={classes.linkContainer}>
+          <Link to={"/resetDevice"} className={classes.Link}>
+            Reset Device
           </Link>
         </div>
         <div className={classes.linkContainer}>
