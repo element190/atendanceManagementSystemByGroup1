@@ -3,7 +3,7 @@ import Button from "../../UI/button/Button";
 import NativeSideBar from "../nativeSideBar/nativeSideBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { getIpAddress } from "../../../utils";
+import { getIpAddress } from "../../../utils";
 
 const TakeAttendance = () => {
   const [firstName, setFirstName] = useState("");
