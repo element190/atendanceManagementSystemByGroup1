@@ -1,7 +1,7 @@
 import classes from "./SideBar.module.css"
 import { Link } from "react-router-dom";  
 import semiImage from "../../../assests/images/semi.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHouse} from "@fortawesome/free-solid-svg-icons/faHouse";
 import {faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {faUserMinus} from "@fortawesome/free-solid-svg-icons";
