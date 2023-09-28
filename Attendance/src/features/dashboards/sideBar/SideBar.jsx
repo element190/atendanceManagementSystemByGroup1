@@ -14,7 +14,8 @@ const SideBar = () =>{
           <div className={classes.linkContainer}><Link to={"/adminHome"} className={classes.Link} >Home</Link></div>
           <div className={classes.linkContainer}><Link to={"/addAdmin"} className={classes.Link} >Add Admin</Link></div>
           <div className={classes.linkContainer}><Link to={"/removeAdmin"} className={classes.Link} >Remove Admin</Link></div>
-          <div className={classes.linkContainer}><Link to={"/addCohort"} className={classes.Link} >Add Cohort</Link></div>
+          <div className={classes.linkContainer}><Link to={"/addNative"} className={classes.Link} >Add Native</Link></div>
+          <div className={classes.linkContainer}><Link to={"/removeNative"} className={classes.Link} >Remove Native</Link></div>
           <div className={classes.linkContainer}><Link to={"/removeCohort"} className={classes.Link} >Remove Cohort</Link></div>
           <div className={classes.linkContainer}><Link to={"/cohortAttendance"} className={classes.Link} >Cohort's Attendance Status</Link></div>
           <div className={classes.linkContainer}><Link to={"/nativeAttendance"} className={classes.Link} > Native's Attendance Status</Link></div>

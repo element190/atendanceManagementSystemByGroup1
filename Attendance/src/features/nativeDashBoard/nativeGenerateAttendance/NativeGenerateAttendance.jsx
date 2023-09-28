@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import NativeSideBar from "../nativeSideBar/nativeSideBar";
 import classes from "./nativeGenerateAttendance.module.css";
 import Button from "../../UI/button/Button";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 
 const NativeGenerateAttendanceReport = () => {
  
@@ -343,8 +345,10 @@ const NativeGenerateAttendanceReport = () => {
 
   const startDateHandler = (e)=>{
     setStartDate(e.target.value)
+    console.log(startDate);
   }
 
+  console.log(startDate);
     const endDateHandler = (e) => {
       setEndDate(e.target.value);
     };
@@ -352,9 +356,12 @@ const NativeGenerateAttendanceReport = () => {
     const submitHandler = async (e) =>{
       e.preventDefault()
 
+      const semicolonEmail = sessionStorage.getItem("semicolonEmail");
+
       dateDetails = {
         startDate: startDate,
-        endDate: endDate
+        endDate: endDate,
+        semicolonEmail: semicolonEmail,
       }
 
        try {
@@ -378,7 +385,7 @@ const NativeGenerateAttendanceReport = () => {
       <div className={classes.innerContainer}>
         <p>Generate Native's Attendance Report</p>
         <form action="" onSubmit={submitHandler} className={classes.formInput}>
-          <input className={classes.input} onChange={startDateHandler} type="date" name="" id="" />
+          <input className={classes.input} onChange={startDateHandler} type="date"  name="" id="" />
           <input className={classes.input} onChange={endDateHandler} type="date" name="" id="" />
           <Button className={classes.btn}> Generate</Button>
         </form>
@@ -403,15 +410,24 @@ const NativeGenerateAttendanceReport = () => {
         <nav>
           <ul>
             <li>
-              <a href="#" onClick={prePage}>Prev</a>
+              <a href="#" onClick={prePage}>
+                Prev
+              </a>
             </li>
-            {numbers.map((n,i)=>(
-              <li className={`pageItems $(currentPage === n ? 'active' : '')`} key={i}>
-                <a href="#" onClick={()=> changeCPage(n)} >{n}</a>
+            {numbers.map((n, i) => (
+              <li
+                className={`pageItems $(currentPage === n ? 'active' : '')`}
+                key={i}
+              >
+                <a href="#" onClick={() => changeCPage(n)}>
+                  {n}
+                </a>
               </li>
             ))}
             <li>
-              <a href="#" onClick={nextPage}>Next</a>
+              <a href="#" onClick={nextPage}>
+                Next
+              </a>
             </li>
           </ul>
         </nav>
@@ -456,3 +472,32 @@ const NativeGenerateAttendanceReport = () => {
 };
 
 export default NativeGenerateAttendanceReport;
+// import React, { useState } from "react";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+
+// function NativeGenerateAttendanceReport() {
+//   const [selectedDate, setSelectedDate] = useState(null);
+
+//   const handleDateChange = (date) => {
+//     setSelectedDate(date);
+//     console.log(date);
+//   };
+
+//   return (
+//     <div>
+//       <h2>Calendar Input</h2>
+//       <DatePicker
+//         selected={selectedDate}
+//         onChange={handleDateChange}
+//         dateFormat="dd/MM/yyyy"
+//         placeholderText="dd/mm/yyyy"
+//       />
+//       {selectedDate && (
+//         <p>Selected Date: {selectedDate.toLocaleDateString("en-GB")}</p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default NativeGenerateAttendanceReport;

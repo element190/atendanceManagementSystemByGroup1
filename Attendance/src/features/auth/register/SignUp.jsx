@@ -75,7 +75,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8092/api/v1/user/register",
+        "https://elitestracker-production.up.railway.app/api/v1/user/register",
         userDetails
       );
 

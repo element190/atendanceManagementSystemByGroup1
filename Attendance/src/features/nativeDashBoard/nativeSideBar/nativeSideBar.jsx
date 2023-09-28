@@ -12,7 +12,7 @@ const NativeSideBar = () => {
       </div>
       <div className={classes.sideBarItems}>
         <div className={classes.linkContainer}>
-          <Link to={"/takeAttendance"} className={classes.Link}>
+          <Link to={"/native/takeAttendance"} className={classes.Link}>
             Take Attendance
           </Link>
         </div>
