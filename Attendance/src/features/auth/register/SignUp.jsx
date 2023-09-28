@@ -6,7 +6,7 @@ import classes from "./styles/signUp.module.css";
 import { useNavigate } from "react-router-dom";
 import Card from "../../UI/card/Card";
 import semiImage from "../../../assests/images/semi.png";
-import { getIpAddress } from "../../../utils";
+// import { getIpAddress } from "../../../utils";
 
 const SignUp = () => {
   const initialValue = {
@@ -30,8 +30,8 @@ const SignUp = () => {
     console.log("Ip addrress -> ", ipAddress);
   }
 
-  console.log("hfdjhsfdhjshg");
-  apiCall();
+  // console.log("hfdjhsfdhjshg");
+  // apiCall();
 
   // const validatePassword = () =>{
   //   if(confirmPassword === password){
@@ -90,7 +90,7 @@ const SignUp = () => {
       console.log("response", response.status);
 
       if (userDetails.semicolonEmail.includes("native")) {
-        navigate("/takeAttendance");
+        navigate("/");
       } else {
         navigate("/adminHome");
       }

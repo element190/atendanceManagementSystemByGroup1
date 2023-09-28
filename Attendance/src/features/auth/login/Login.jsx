@@ -133,6 +133,7 @@ const Login = () => {
 
   const [data, setData] = useState(initialValue);
   const [error, setError] = useState(null);
+  const [networkError, setNetworkError] = useState("");
   const navigate = useNavigate();
 
   const onChangleHandler = (e) => {
@@ -155,11 +156,12 @@ const Login = () => {
         "https://elitestracker-production.up.railway.app/api/v1/user/loginUser",
         userDetails
       );
-      console.log(response.data)
+      console.log(response)
       console.log( JSON.stringify(response));
       if(response.status === 200){
-        const email = JSON.stringify(response.data.semicolonEmail);
-        sessionStorage.setItem('semicolonEmail', email.trim())
+        const jwtToken = JSON.stringify(response.data.jwtToken);
+        console.log(jwtToken)
+        sessionStorage.setItem("jwtToken", jwtToken);
         sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
       }
 
@@ -172,6 +174,7 @@ const Login = () => {
     } catch (error) {
       console.log(error)
       setError(error.response.data.data);
+      setNetworkError(error.message)
       console.log(error.response.data.data)
     }
   };
@@ -197,6 +200,7 @@ const Login = () => {
           <p className={classes.loginText}>LOGIN</p>
           <form action="" onSubmit={onSubmitHandler} className={classes.form}>
             {error && <p className={classes.error}>{error}</p>}
+            {networkError && <p className={classes.error}>{networkError}</p>}
             <label htmlFor="">
               Email <span>*</span>
             </label>

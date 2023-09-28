@@ -3,19 +3,27 @@ import Button from "../../UI/button/Button";
 import NativeSideBar from "../nativeSideBar/nativeSideBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getIpAddress } from "../../../utils";
 
 const TakeAttendance = () => {
   const [firstName, setFirstName] = useState("");
   const [message, setMessage] = useState("");
-  const [attendanceStatus, setAttendanceStatus] = useState("")
+  // const [attendanceStatus, setAttendanceStatus] = useState("")
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
+  const [ipAddress, setIpAddress] = useState("")
 
 
   const [screenWidth, setScreenWidth] = useState(0);
   const [screenHeight, setScreenHeight] = useState(0);
 
   useEffect(()=>{
+     async function apiCall() {
+       const ipAddress = await getIpAddress();
+       setIpAddress(ipAddress);
+       console.log("Ip addrress -> ", ipAddress);
+     }
+    apiCall();
     const firstName = sessionStorage.getItem("firstName");
     setFirstName(firstName);
   },[])
@@ -48,37 +56,50 @@ const TakeAttendance = () => {
     }, []); 
 
   const onClickHandler = async (e) => {
-    e.preventDefault;
+    // e.preventDefault;
 
-    setAttendanceStatus("PRESENT");
-    const semicolonEmail = sessionStorage.getItem('semicolonEmail')
+    // setAttendanceStatus("PRESENT");
+    const jwtToken = sessionStorage.getItem('jwtToken')
     
-    console.log(attendanceStatus)
+    // console.log(attendanceStatus)
 
     const userDetails = {
-      attendanceStatus: attendanceStatus,
-      semicolonEmail: semicolonEmail,
+      // attendanceStatus: attendanceStatus,
+      // jwtToken: jwtToken,
       screenWidth: screenWidth,
       screenHeight: screenHeight,
+      ipAddress: ipAddress
+    };
+
+    const headers = {
+      "Authorization": `Bearer ${jwtToken}`,
+      'Content-Type' : 'application/json',
     };
 
     console.log("Data sent successfully:", userDetails);
-    console.log("Data sent successfully:", semicolonEmail);
 
     try {
       const response = await axios.post(
-        "https://elitestracker-production.up.railway.app/api/v1/natives/takeAttendance",
-        userDetails
+        "https://elitestracker-production.up.railway.app/api/v1/natives/takeAttendanc",
+        userDetails, {headers}
       );
-      console.log("Data sent successfully:", response);
-      
-      console.log("Data sent successfully:", response.data);
-      console.log("response", response.status);
-      setMessage(response.data.data)
+     
+       if (response) {
+          console.log("Data sent successfully:", response);
+
+          console.log("Data sent successfully:", response.data);
+          console.log("response", response.status);
+          setMessage(response.data.data);
+        } else {
+          throw new Error("Network Error");
+        }
 
       } catch (error) {
+        console.log(error.message);
         console.log(error.response);
-        setError(error.response.data.data);
+        setError(error.response);
+        setError(error.message);
+        // setError(error.response.data.data);
 
         // console.log(error);
       }
