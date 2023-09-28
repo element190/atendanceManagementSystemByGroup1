@@ -13,6 +13,14 @@
     /* box-shadow: 0 0 2px 1px gray; */
 }
 
+.Link p{
+    padding-left: 10px;
+}
+
+.LinkLogout p{
+    padding-left: 10px;
+}
+
 .logo img {
     width: 70px;
     height: 70px;
