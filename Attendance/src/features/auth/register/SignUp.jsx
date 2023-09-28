@@ -184,7 +184,11 @@ const SignUp = () => {
             </label>
             <div>
               <input
+
+                // placeholder="password"
+
                 placeholder=""
+
                 type="password"
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
