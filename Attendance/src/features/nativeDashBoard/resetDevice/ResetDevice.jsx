@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./resetDevice.css";
+import classes from "./resetDevice.module.css";
 
 const ResetDeviceForm = () => {
   const [adminEmail, setAdminEmail] = useState("");
@@ -72,10 +72,10 @@ const ResetDeviceForm = () => {
   };
 
   return (
-    <div className="my-form-box">
+    <div className={classes.myFormBox}>
       <h1>Reset Device</h1>
       <form onSubmit={handleSubmit}>
-        <div className="div-to-flex">
+        <div className={classes.divToFlex}>
           <div>
             <input
               className="admin-email"
@@ -89,7 +89,7 @@ const ResetDeviceForm = () => {
           </div>
           <div>
             <input
-              className="admin-password"
+            //   className="admin-password"
               placeholder="Admin password"
               type="text"
               value={adminPassWord}
@@ -99,7 +99,7 @@ const ResetDeviceForm = () => {
             {ok && <p>{ok}</p>}
           </div>
         </div>
-        <button type="submit" className="submit">
+        <button type="submit" className={classes.submit}>
           Submit
         </button>
       </form>

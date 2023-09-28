@@ -5,7 +5,8 @@ import axios from "axios";
 import classes from "./styles/signUp.module.css";
 import { useNavigate } from "react-router-dom";
 import Card from "../../UI/card/Card";
-import semiImage from "../../../assests/images/semi.png"
+import semiImage from "../../../assests/images/semi.png";
+import { getIpAddress } from "../../../utils";
 
 const SignUp = () => {
   const initialValue = {
@@ -17,12 +18,20 @@ const SignUp = () => {
 
   const [data, setData] = useState(initialValue);
   const [error, setError] = useState(null);
-  const [passwordError, setPasswordError] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [password, setPassword] = useState("");
-  const [verifiedPassword, setVerifyPassword] = useState("")
+  const [verifiedPassword, setVerifyPassword] = useState("");
 
   const navigate = useNavigate();
+
+  async function apiCall() {
+    const ipAddress = await getIpAddress();
+    console.log("Ip addrress -> ", ipAddress);
+  }
+
+  console.log("hfdjhsfdhjshg");
+  apiCall();
 
   // const validatePassword = () =>{
   //   if(confirmPassword === password){
@@ -48,19 +57,17 @@ const SignUp = () => {
 
     setScreenWidth(screenWidth);
     setScreenHeight(screenHeight);
-  }, []); 
-
-
+  }, []);
 
   const onSumbitHandler = async (e) => {
     e.preventDefault();
 
-     if (confirmPassword === password) {
-       setVerifyPassword(confirmPassword);
-     } else {
-       setPasswordError("Your password doesn't match");
-       return;
-     }
+    if (confirmPassword === password) {
+      setVerifyPassword(confirmPassword);
+    } else {
+      setPasswordError("Your password doesn't match");
+      return;
+    }
 
     const userDetails = {
       semicolonEmail: data.email,
@@ -80,7 +87,7 @@ const SignUp = () => {
       );
 
       console.log("Data sent successfully:", response.data);
-      console.log("response", response.status)
+      console.log("response", response.status);
 
       if (userDetails.semicolonEmail.includes("native")) {
         navigate("/takeAttendance");
@@ -88,12 +95,11 @@ const SignUp = () => {
         navigate("/adminHome");
       }
     } catch (error) {
-    setError(error.response.data.data);
-    console.log(error.response.data.data);
+      setError(error.response.data.data);
+      console.log(error.response.data.data);
     }
+
     setData("");
-
-
 
     // e.preventDefault();
     //  if (data.password !== confirmPassword) {
@@ -120,7 +126,7 @@ const SignUp = () => {
     //       navigate("/takeAttendance");
     //     }else{
     //       navigate("/adminHome");
-    //     }       
+    //     }
     //   })
     //   .catch((error) => {
     //     if (error.response) {
@@ -136,12 +142,12 @@ const SignUp = () => {
           <AuthImage />
         </div>
         <div className={classes.formContainer}>
-          <div className={classes.flexLogoText}>
+          {/* <div className={classes.flexLogoText}>
             <div className={classes.logo}>
               <img src={semiImage} alt="Semicolon image" />
             </div>
             <h1>SEMICOLON</h1>
-          </div>
+          </div> */}
           <p className={classes.register}>REGISTER</p>
           <form action="" className={classes.form} onSubmit={onSumbitHandler}>
             {error && <h2 className={classes.error}>{error}</h2>}

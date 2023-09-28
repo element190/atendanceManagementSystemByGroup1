@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../removeNative/removeNative.css"
+import classes from "./removeNative.module.css"
 import SideBar from "../../sideBar/SideBar";
 
 const RemoveNative = () => {
@@ -41,11 +41,11 @@ const RemoveNative = () => {
   };
 
   return (
-    <div className="main">
+    <div className={classes.main}>
         <SideBar/>
-        <div className="form-box">
+        <div className={classes["form-box"]}>
       <h2>Remove Native</h2>
-      <form onsSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Semicolon Email:</label>
           <input
@@ -56,7 +56,7 @@ const RemoveNative = () => {
           {errors.semicolonEmail && <p>{errors.semicolonEmail}</p>}
           {ok && <p>{ok}</p>}
         </div>
-        <button type="submit" className="submit">
+        <button type="submit" className={classes.submit}>
           Submit
         </button>
       </form>
