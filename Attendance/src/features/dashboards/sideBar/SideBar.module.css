@@ -42,6 +42,14 @@
    height: 46px;
 }
 
+.Link p{
+    padding-left: 10px;
+}
+
+.linkContainer{
+    display: flex;
+}
+
 .Link:hover{
     color: rgb(247,46,46);
     background-color: white;
