@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import semiImage from "../../../assests/images/semi.png";
 import classes from './nativeSideBar.module.css'
-import {faUserCheck, faClockRotateLeft, faRightFromBracket, faChartSimple} from "@fortawesome/free-solid-svg-icons";
+import {faUserCheck, faClockRotateLeft, faRightFromBracket, faChartSimple, faComputer} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const NativeSideBar = () => {
@@ -26,6 +26,11 @@ const NativeSideBar = () => {
         <div className={classes.linkContainer}>
           <Link to={"/checkAttendanceHistory"} className={classes.Link}>
               <FontAwesomeIcon icon={faChartSimple} /><p>Check Attendance History</p>
+          </Link>
+        </div>
+        <div className={classes.linkContainer}>
+          <Link to={"/resetDevice"} className={classes.Link}>
+              <FontAwesomeIcon icon={faComputer} /><p>Reset Device</p>
           </Link>
         </div>
         <div className={classes.linkContainer}>

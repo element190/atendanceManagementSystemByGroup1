@@ -10,31 +10,35 @@ import DisableNativesAttendance from "./features/dashboards/cohort'sAttendance/C
 import EnableNativesAttendance from "./features/dashboards/native'sAttendance/native'sAttendance";
 import ForgottenPassword from "./features/auth/forgottenPassword/forgottenPassword";
 import ConfirmForgottenPasswordCode from "./features/auth/confirmCode/ConfirmationCode";
-import NativeSideBar from "./features/nativeDashBoard/nativeSideBar/nativeSideBar";
+// import NativeSideBar from "./features/nativeDashBoard/nativeSideBar/nativeSideBar";
 import TakeAttendance from "./features/nativeDashBoard/takeAttendance/TakeAttendance";
 // import NativeAttendanceReport from "./features/nativeDashBoard/nativeGenerateAttendance/NativeGenerateAttendance";
 import NativeGenerateAttendanceReport from "./features/nativeDashBoard/nativeGenerateAttendance/NativeGenerateAttendance";
-
+import CreateAdminForm from "./features/dashboards/add_removeAdmin/addAdmin/AddAdmin";
+import AddNative from "./features/dashboards/add_removeNative/addNative/AddNative";
+import RemoveNative from "./features/dashboards/add_removeNative/removeNative/RemoveNative";
+import ResetDeviceForm from "./features/nativeDashBoard/resetDevice/ResetDevice";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SignUp />} />
+        <Route path="/addAdmin" element={<CreateAdminForm/>} />
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/setAttendanceTime" element={<SetTime />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/sideBar" element={<SideBar />} />
+        <Route path="/addNative" element={< AddNative/>} />
         <Route path="/generateNativeAttendanceReport" element={<GenerateNativeAttendance/>}/>
         <Route path="/generateCohortAttendanceReport" element={<GenerateCohortAttendance/>}/>
         <Route path="/cohortAttendance" element={<DisableNativesAttendance/>}/>
         <Route path="/nativeAttendance" element={<EnableNativesAttendance/>}/>
         <Route path="/forgottenPassword" element={<ForgottenPassword/>}/>
         <Route path ="/confirmationCode" element ={<ConfirmForgottenPasswordCode/>}/>
-        <Route path="/nativeSideBar" element={<NativeSideBar/>} />
-        <Route path="/takeAttendance" element={<TakeAttendance/>} />
+        <Route path="/removeNative" element={<RemoveNative/>} />
+        <Route path="/native/takeAttendance" element={<TakeAttendance/>} />
         <Route path="/generateNativeAttendance" element={<NativeGenerateAttendanceReport/>} />
+        <Route path="/resetDevice" element={<ResetDeviceForm/>} />       
       </Routes>
     </Router>
   );
