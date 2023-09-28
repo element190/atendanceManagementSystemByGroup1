@@ -38,12 +38,20 @@
    font-size: 18px;
    padding-left: 30px;
    font-weight: 500;
-   width: 350px;
+   width: inherit;
    height: 46px;
+}
+
+.Link p{
+    padding-left: 10px;
+}
+
+.linkContainer{
+    display: flex;
 }
 
 .Link:hover{
     color: rgb(247,46,46);
-    background-color: white;
+    background-color: rgb(228,228,228);
     font-weight: 700;
 }
