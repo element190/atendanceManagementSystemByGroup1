@@ -8,13 +8,13 @@ const ForgottenPassword = () =>{
       <div className={classes.mainContainer}>
         <AuthImage />
         <div className={classes.formContainer}>
-          <div className={classes.flexLogoText}>
+          {/* <div className={classes.flexLogoText}>
             <div className={classes.logo}>
-              {/* <h2>{semiImage}</h2> */}
+              <h2>{semiImage}</h2>
               <img src={semiImage} alt="Semicolon image" />
             </div>
             <h1>SEMICOLON</h1>
-          </div>
+          </div> */}
           <p>Enter your Email Address</p>
           <form action="">
             <label htmlFor="email">

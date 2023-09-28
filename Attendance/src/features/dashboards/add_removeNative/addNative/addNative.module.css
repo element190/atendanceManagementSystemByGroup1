@@ -1,8 +1,8 @@
-body{
+/* body{
     margin: 0;
     padding: 0;
     background-color: 2995E2;
-}
+} */
 
 .main{
     display: flex;
@@ -12,11 +12,12 @@ body{
     background-color: white;
     max-width: 400px;
     height: 400px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: auto;
+    /* margin-top: 200px; */
+    padding: 50px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    /* text-align: center; */
     transition: box-shadow 0.3s ease;
 }
 .form-box:hover {
@@ -24,23 +25,24 @@ body{
 }
 .form-box h2 {
     margin-bottom: 20px;
+    text-align: center;
 }
 .form-box input {
     padding: 10px;
     margin-bottom: 10px;
     width: 100%;
-    border: none;
+    /* border: none; */
     border-radius: 5px;
 }
 
 .form-box button {
     background-color: red;
-    color: black;
+    color: white;
     padding: 10px 20px;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 .form-box p {

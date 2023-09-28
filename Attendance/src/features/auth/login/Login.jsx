@@ -158,7 +158,8 @@ const Login = () => {
       console.log(response.data)
       console.log( JSON.stringify(response));
       if(response.status === 200){
-        sessionStorage.setItem('semicolonEmail', JSON.stringify(response.data.semicolonEmail))
+        const email = JSON.stringify(response.data.semicolonEmail);
+        sessionStorage.setItem('semicolonEmail', email.trim())
         sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
       }
 
@@ -186,13 +187,13 @@ const Login = () => {
           <AuthImage />
         </div>
         <div className={classes.formContainer}>
-          <div className={classes.flexLogoText}>
+          {/* <div className={classes.flexLogoText}>
             <div className={classes.logo}>
-              {/* <h2>{semiImage}</h2> */}
+              <h2>{semiImage}</h2>
               <img src={semiImage} alt="Semicolon image" />
             </div>
             <h1>SEMICOLON</h1>
-          </div>
+          </div> */}
           <p className={classes.loginText}>LOGIN</p>
           <form action="" onSubmit={onSubmitHandler} className={classes.form}>
             {error && <p className={classes.error}>{error}</p>}

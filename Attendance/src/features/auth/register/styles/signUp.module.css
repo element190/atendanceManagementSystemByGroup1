@@ -5,7 +5,7 @@
 
 .formContainer{
     width: 75%;
-    height: 96vh;
+    height: 76vh;
     margin: auto;
 }
 
@@ -106,12 +106,12 @@
     .formContainer{
         width: 75%;
         height: 40vh;
-        padding-top: 20px ;
+        padding-top: 10px ;
     }
     .form input{
         width:100%;
-        height: 38px;
-        margin-bottom: 15px;
+        height: 35px;
+        margin-bottom: 5px;
         font-size: 20px;
     }
     .form label{
@@ -159,7 +159,7 @@
 @media screen and (max-width: 681px){
     .button{
     width: 100%;
-    height: 45px;
+    height: 40px;
     font-size: 18px;
     }
 }

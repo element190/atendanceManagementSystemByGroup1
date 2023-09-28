@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../addNative/addNative.css";
+import classes from "./addNative.module.css";
 import SideBar from "../../sideBar/SideBar";
 
 const AddNative = () => {
@@ -65,9 +65,9 @@ const AddNative = () => {
   };
 
   return (
-    <div className="main">
+    <div className={classes.main}>
       <SideBar />
-      <div className="form-box">
+      <div className={classes["form-box"]}>
         <h2>Add Native</h2>
         <form onSubmit={handleSubmit}>
           <div>
@@ -96,7 +96,7 @@ const AddNative = () => {
             {errors.semicolonEmail && <p>{errors.semicolonEmail}</p>}
             {ok && <p>{ok}</p>}
           </div>
-          <button type="submit" className="submit">
+          <button type="submit" className={classes.submit}>
             Submit
           </button>
         </form>

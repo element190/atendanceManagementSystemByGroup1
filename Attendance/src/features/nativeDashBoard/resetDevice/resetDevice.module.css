@@ -1,20 +1,20 @@
-body{
+/* body{
     margin: 0;
     padding: 0;
     background-color: 2995E2;
-}
+} */
 
-.my-form-box{
+.myFormBox{
     text-align: center;
     /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); */
 }
-.div-to-flex{
+.divToFlex{
     justify-content: center;
     display: flex;
     gap: 50px;
     margin-top: 50px;
 }
-input{
+.divToFlex input{
     width: 350px;
     height: 80px;
     border-radius: 10px;
