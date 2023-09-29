@@ -51,8 +51,8 @@ const TakeAttendance = () => {
     }
 
     useEffect(() => {
-      const screenWidth = String(window.screen.width).valueOf();
-      const screenHeight = String(window.screen.height).valueOf();
+      const screenWidth = window.screen.width.toString();
+      const screenHeight = window.screen.height.toString();
 
       setScreenWidth(screenWidth);
       setScreenHeight(screenHeight);
