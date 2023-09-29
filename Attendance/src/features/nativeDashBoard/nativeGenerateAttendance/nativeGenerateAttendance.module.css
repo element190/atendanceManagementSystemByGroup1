@@ -51,3 +51,64 @@
     color: white;
     cursor: pointer;
 }
+
+.viewTable{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0 20px;
+    margin: 51px 5px 10px 19px;
+    height: 50vh;
+    width: 70%;
+    border: 1px solid red;
+    background-color: white;
+    border-radius: 10px;
+}
+.viewTable th,
+.viewTable td{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.viewTable th{
+    background-color: red;
+    color: white;
+}
+.viewTable tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+.viewTable tr:nth-child(odd){
+    background-color: white;
+}
+
+.flexPagenation{
+    display: flex;
+    list-style: none;
+    width: 600px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.flexPagenation a{
+    text-decoration: none;
+}
+
+.flexPagenation li{
+    margin-left: 20px;
+}
+
+.prePage{
+    padding: 2px 7px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    background: rgba(236, 235, 235, 0.847);
+    box-shadow: 0px 0px 0px 2px gainsboro;
+}
+
+.pages{
+    padding: 2px 7px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    background: rgba(236, 235, 235, 0.847);
+    box-shadow: 0px 0px 0px 2px gainsboro;
+}

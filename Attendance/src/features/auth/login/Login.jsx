@@ -164,6 +164,7 @@ const Login = () => {
         sessionStorage.setItem("jwtToken", jwtToken);
         sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
       }
+      
 
       if (response.data.semicolonEmail.includes('native')) {
         console.log('I am here');
@@ -174,7 +175,7 @@ const Login = () => {
     } catch (error) {
       console.log(error)
       setError(error.response.data.data);
-      setNetworkError(error.message)
+      // setNetworkError(error.message)
       console.log(error.response.data.data)
     }
   };
