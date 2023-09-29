@@ -343,6 +343,22 @@ const NativeGenerateAttendanceReport = () => {
   const [endDate, setEndDate] = useState("");
   const [responseData, setResponseData] = useState("");
 
+    function prePage() {
+      if (currentPage !== 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    }
+
+    function changeCPage(id) {
+      setCurrentPage(id);
+    }
+
+    function nextPage() {
+      if (currentPage !== npage) {
+        setCurrentPage(currentPage + 1);
+      }
+    }
+
   const startDateHandler = (e)=>{
     setStartDate(e.target.value)
     console.log(startDate);
@@ -385,11 +401,23 @@ const NativeGenerateAttendanceReport = () => {
       <div className={classes.innerContainer}>
         <p>Generate Native's Attendance Report</p>
         <form action="" onSubmit={submitHandler} className={classes.formInput}>
-          <input className={classes.input} onChange={startDateHandler} type="date"  name="" id="" />
-          <input className={classes.input} onChange={endDateHandler} type="date" name="" id="" />
+          <input
+            className={classes.input}
+            onChange={startDateHandler}
+            type="date"
+            name=""
+            id=""
+          />
+          <input
+            className={classes.input}
+            onChange={endDateHandler}
+            type="date"
+            name=""
+            id=""
+          />
           <Button className={classes.btn}> Generate</Button>
         </form>
-        <table>
+        <table className={classes.viewTable}>
           <thead>
             <th>S/N</th>
             <th>Name</th>
@@ -408,9 +436,9 @@ const NativeGenerateAttendanceReport = () => {
           </tbody>
         </table>
         <nav>
-          <ul>
+          <ul className={classes.flexPagenation}>
             <li>
-              <a href="#" onClick={prePage}>
+              <a href="#" className={classes.prePage} onClick={prePage}>
                 Prev
               </a>
             </li>
@@ -419,13 +447,13 @@ const NativeGenerateAttendanceReport = () => {
                 className={`pageItems $(currentPage === n ? 'active' : '')`}
                 key={i}
               >
-                <a href="#" onClick={() => changeCPage(n)}>
+                <a href="#" className={classes.pages} onClick={() => changeCPage(n)}>
                   {n}
                 </a>
               </li>
             ))}
             <li>
-              <a href="#" onClick={nextPage}>
+              <a href="#" className={classes.prePage} onClick={nextPage}>
                 Next
               </a>
             </li>
@@ -453,22 +481,6 @@ const NativeGenerateAttendanceReport = () => {
       </table> */}
     </div>
   );
-
-  function prePage() {
-    if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1) 
-    }
-  }
-
-  function changeCPage(id) {
-    setCurrentPage(id)
-  }
-
-  function nextPage() {
-    if (currentPage !== npage) {
-      setCurrentPage(currentPage + 1)
-    }
-  }
 };
 
 export default NativeGenerateAttendanceReport;
