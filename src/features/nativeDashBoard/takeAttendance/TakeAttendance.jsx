@@ -17,15 +17,16 @@ const TakeAttendance = () => {
   const [screenWidth, setScreenWidth] = useState(0);
   const [screenHeight, setScreenHeight] = useState(0);
 
-  async function apiCall() {
-    let ipAddress = await getIpAddress();
-    setIpAddress(ipAddress)
-    console.log("Ip addrress -> ", ipAddress);
-  }
-
-  apiCall();
+ 
 
   useEffect(()=>{
+    async function apiCall() {
+      let ipAddress = await getIpAddress();
+      setIpAddress(ipAddress)
+      console.log("Ip addrress -> ", ipAddress);
+    }
+  
+    apiCall();
     const firstName = sessionStorage.getItem("firstName");
     setFirstName(firstName);
   },[])
@@ -50,8 +51,8 @@ const TakeAttendance = () => {
     }
 
     useEffect(() => {
-      const screenWidth = window.screen.width;
-      const screenHeight = window.screen.height;
+      const screenWidth = String(window.screen.width).valueOf();
+      const screenHeight = String(window.screen.height).valueOf();
 
       setScreenWidth(screenWidth);
       setScreenHeight(screenHeight);
