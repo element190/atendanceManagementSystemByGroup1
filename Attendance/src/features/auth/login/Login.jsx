@@ -151,6 +151,8 @@ const Login = () => {
       password: data.password,
     };
 
+    console.log(userDetails)
+
     try {
       const response = await axios.post(
         "https://elitestracker-production.up.railway.app/api/v1/user/loginUser",
@@ -164,7 +166,7 @@ const Login = () => {
         sessionStorage.setItem("jwtToken", jwtToken);
         sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
       }
-      
+
 
       if (response.data.semicolonEmail.includes('native')) {
         console.log('I am here');
