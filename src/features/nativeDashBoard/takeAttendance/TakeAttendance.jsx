@@ -86,7 +86,8 @@ const TakeAttendance = () => {
       
       console.log("Data sent successfully:", response.data);
       console.log("response", response.status);
-      setMessage(response.data.data)
+      setMessage(response.message)
+      setMessage(response.data.message)
 
       } catch (error) {
         console.log(error.response);
