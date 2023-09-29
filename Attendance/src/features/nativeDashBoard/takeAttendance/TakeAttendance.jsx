@@ -11,56 +11,54 @@ const TakeAttendance = () => {
   // const [attendanceStatus, setAttendanceStatus] = useState("")
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
-  const [ipAddress, setIpAddress] = useState("")
-
+  const [ipAddress, setIpAddress] = useState("");
 
   const [screenWidth, setScreenWidth] = useState(0);
   const [screenHeight, setScreenHeight] = useState(0);
 
-  useEffect(()=>{
-     async function apiCall() {
-       const ipAddress = await getIpAddress();
-       setIpAddress(ipAddress);
-       console.log("Ip addrress -> ", ipAddress);
-     }
+  useEffect(() => {
+    async function apiCall() {
+      const ipAddress = await getIpAddress();
+      setIpAddress(ipAddress);
+      console.log("Ip addrress -> ", ipAddress);
+    }
     apiCall();
     const firstName = sessionStorage.getItem("firstName");
     setFirstName(firstName);
-  },[])
+  }, []);
 
-    useEffect(() => {
-      
-      setInterval(() => {
-        setTime(getTime());
-      }, 1000);
-    }, []);
+  useEffect(() => {
+    setInterval(() => {
+      setTime(getTime());
+    }, 1000);
+  }, []);
 
-    function getTime() {
-      const now = new Date();
-      return now.toLocaleString("en-Us", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      });
-    }
+  function getTime() {
+    const now = new Date();
+    return now.toLocaleString("en-Us", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+  }
 
-    useEffect(() => {
-      const screenWidth = window.screen.width;
-      const screenHeight = window.screen.height;
+  useEffect(() => {
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
 
-      setScreenWidth(screenWidth);
-      setScreenHeight(screenHeight);
-    }, []); 
+    setScreenWidth(screenWidth);
+    setScreenHeight(screenHeight);
+  }, []);
 
   const onClickHandler = async (e) => {
     // e.preventDefault;
 
     // setAttendanceStatus("PRESENT");
-    const jwtToken = sessionStorage.getItem('jwtToken')
-    
+    const jwtToken = sessionStorage.getItem("jwtToken");
+
     // console.log(attendanceStatus)
 
     const userDetails = {
@@ -68,42 +66,42 @@ const TakeAttendance = () => {
       // jwtToken: jwtToken,
       screenWidth: screenWidth,
       screenHeight: screenHeight,
-      ipAddress: ipAddress
+      ipAddress: ipAddress,
     };
 
     const headers = {
-      "Authorization": `Bearer ${jwtToken}`,
-      'Content-Type' : 'application/json',
+      Authorization: `Bearer ${jwtToken}`,
+      "Content-Type": "application/json",
     };
 
     console.log("Data sent successfully:", userDetails);
 
     try {
       const response = await axios.post(
-        "https://elitestracker-production.up.railway.app/api/v1/natives/takeAttendanc",
-        userDetails, {headers}
+        "https://elitestracker-production.up.railway.app/api/v1/natives/takeAttendance",
+        userDetails,
+        { headers }
       );
-     
-       if (response) {
-          console.log("Data sent successfully:", response);
 
-          console.log("Data sent successfully:", response.data);
-          console.log("response", response.status);
-          setMessage(response.data.data);
-        } else {
-          throw new Error("Network Error");
-        }
+      if (response) {
+        console.log("Data sent successfully:", response);
 
-      } catch (error) {
-        console.log(error.message);
-        console.log(error.response);
-        setError(error.response);
-        setError(error.message);
-        // setError(error.response.data.data);
-
-        // console.log(error);
+        console.log("Data sent successfully:", response.data);
+        console.log("response", response.status);
+        setMessage(response.data.data);
+      } else {
+        throw new Error("Network Error");
       }
-    };
+    } catch (error) {
+      console.log(error.message);
+      console.log(error.response);
+      setError(error.response);
+      setError(error.message);
+      // setError(error.response.data.data);
+
+      // console.log(error);
+    }
+  };
 
   // useEffect(() => {
   //   const fetchCurrentTimeAndDate = async () => {
