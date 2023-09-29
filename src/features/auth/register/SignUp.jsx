@@ -30,7 +30,6 @@ const SignUp = () => {
     console.log("Ip addrress -> ", ipAddress);
   }
 
-  console.log("hfdjhsfdhjshg");
   apiCall();
 
   // const validatePassword = () =>{

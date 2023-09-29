@@ -3,6 +3,7 @@ import Button from "../../UI/button/Button";
 import NativeSideBar from "../nativeSideBar/nativeSideBar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getIpAddress } from "../../../utils";
 
 const TakeAttendance = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,10 +11,19 @@ const TakeAttendance = () => {
   const [attendanceStatus, setAttendanceStatus] = useState("")
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
+  const [ipAddress, setIpAddress] = useState("")
 
 
   const [screenWidth, setScreenWidth] = useState(0);
   const [screenHeight, setScreenHeight] = useState(0);
+
+  async function apiCall() {
+    let ipAddress = await getIpAddress();
+    setIpAddress(ipAddress)
+    console.log("Ip addrress -> ", ipAddress);
+  }
+
+  apiCall();
 
   useEffect(()=>{
     const firstName = sessionStorage.getItem("firstName");
@@ -58,6 +68,7 @@ const TakeAttendance = () => {
     const userDetails = {
       attendanceStatus: attendanceStatus,
       semicolonEmail: semicolonEmail,
+      ipAddress : ipAddress,
       screenWidth: screenWidth,
       screenHeight: screenHeight,
     };
