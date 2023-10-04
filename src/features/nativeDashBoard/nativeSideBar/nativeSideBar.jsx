@@ -6,7 +6,6 @@ const NativeSideBar = () => {
   return (
     <div className={classes.sideBar}>
       <div className={classes.logo}>
-        {/* <h2>{semiImage}</h2> */}
         <img src={semiImage} alt="Semicolon image" />
         <h1>SEMICOLON</h1>
       </div>
@@ -32,9 +31,11 @@ const NativeSideBar = () => {
           </Link>
         </div>
         <div className={classes.linkContainer}>
-          <Link to={"/"} className={classes.LinkLogout}>
-            Logout
-          </Link>
+          <div className={classes.LinkLogoutContain}>
+            <Link to={"/"} className={classes.LinkLogout}>
+              Logout
+            </Link>
+          </div>
         </div>
       </div>
     </div>
