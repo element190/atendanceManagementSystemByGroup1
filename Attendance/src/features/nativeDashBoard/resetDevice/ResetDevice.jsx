@@ -79,11 +79,11 @@ const ResetDeviceForm = () => {
         <h1>Reset Device</h1>
         <form onSubmit={handleSubmit}>
           <div className={classes.divToFlex}>
-            <label htmlFor="">Admin email <span>*</span></label>
+            <label htmlFor="">Email <span>*</span></label>
             <div className={classes.input}>
               <input
                 className="admin-email"
-                placeholder="Admin email"
+                placeholder="Admin semicolon email"
                 type="text"
                 value={adminEmail}
                 onChange={(e) => setAdminEmail(e.target.value)}
@@ -91,7 +91,7 @@ const ResetDeviceForm = () => {
               {errors.adminEmail && <p>{errors.adminEmail}</p>}
               {ok && <p>{ok}</p>}
             </div>
-            <label htmlFor="">Admin password <span>*</span></label>
+            <label htmlFor="">Password <span>*</span></label>
             <div className={classes.input}>
               <input
                 //   className="admin-password"

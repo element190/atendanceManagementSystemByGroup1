@@ -21,15 +21,8 @@ import RemoveNative from "./features/dashboards/add_removeNative/removeNative/Re
 import ResetDeviceForm from "./features/nativeDashBoard/resetDevice/ResetDevice";
 import ConfirmResetPassword  from "./features/auth/confirmPassword/ConfirmResetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
-import { useState } from "react";
 
 function App() {
-
-  const[isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const handleLoginStatus =(status) =>{
-    setIsLoggedIn(status)
-  }
 
   return (
     <Router>

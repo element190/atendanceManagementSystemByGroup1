@@ -22,7 +22,7 @@ const NativeSideBar = () => {
         <div className={classes.linkContainer}>
           <Link to={"/generateNativeAttendance"} className={classes.Link}>
             <FontAwesomeIcon icon={faClockRotateLeft} />
-            <p>Generate Attendance</p>
+            <p>Generate Attendance Log</p>
           </Link>
         </div>
         <div className={classes.linkContainer}>

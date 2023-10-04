@@ -119,7 +119,7 @@ const TakeAttendance = () => {
     setTimeout(()=>{
       setError(false);
       setMessage(false);
-    }, 3000)
+    }, 5000)
   };
 
   // useEffect(() => {

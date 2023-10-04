@@ -21,12 +21,13 @@
 .sideBar{
     width: 23%;
     background-color: rgb(255,255,255);
-    height: 700px;
+    height: 680px;
     color:  rgb(247,46,46);
     box-shadow: 0 0 5px 5px rgb(202,202 ,202 );
     display:grid;
-    grid-template-rows: 12% 88%;
+    grid-template-rows: 15% 80%;
     row-gap: 40px;
+    padding-top: 5px;
 }
 
 .sideBarItems{
@@ -62,7 +63,6 @@
    font-weight: 500;
    width: 350px;
    height: 66px;
-   /* margin-top: 300px; */
 }
 
 .Link:hover{
@@ -80,5 +80,5 @@
     background-color: rgb(247,46,46);
     color: white;
     font-weight: 700;
-    width: 83%;
+    width: 85%;
 }
