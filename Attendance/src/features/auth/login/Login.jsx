@@ -134,7 +134,6 @@ const Login = (props) => {
   const [data, setData] = useState(initialValue);
   const [error, setError] = useState(null);
   const [networkError, setNetworkError] = useState("");
-  const [isLoggedIn, setIsLogged] = useState("")
   const navigate = useNavigate();
 
   const onChangleHandler = (e) => {
@@ -168,7 +167,6 @@ const Login = (props) => {
         sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName));
         sessionStorage.setItem('semicolconEmail', JSON.stringify(response.data.semicolonEmail));
         sessionStorage.setItem('isLoggedIn', JSON.stringify(response.data.loggedIn));
-        setIsLogged(response.data.loggedIn)
         
         if (response.data.semicolonEmail.includes("native")) {
           console.log("I am here");
@@ -192,8 +190,6 @@ const Login = (props) => {
     //  console.log(typeof email);
     //  console.log(email.length);
 
-    props.onLogin(isLoggedIn)
-    console.log("This is isLogged in login.js", isLoggedIn);
   };
 
  

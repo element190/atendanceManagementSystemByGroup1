@@ -1,9 +1,11 @@
 import { Navigate, Outlet} from "react-router-dom";
 
-const PrivateRoute = (props) => {
-  console.log("This is isLogged in privateRoute.js", props.onLogin);
+const PrivateRoute = () => {
+  
+  const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+  console.log("This is private router", isLoggedIn)
   return (
-    props.onLogin ? <Outlet/> : <Navigate to="/"/>
+   isLoggedIn ? <Outlet/> : <Navigate to="/"/>
   )
 };
 

@@ -24,6 +24,7 @@ const TakeAttendance = () => {
     }
     apiCall();
     const firstNameWithQoute = sessionStorage.getItem("firstName");
+    // const firstName = sessionStorage.getItem("firstName");
     const firstName = firstNameWithQoute.slice(1, -1);
     // const firstName = firstNameWithQoute.replace(/"/g,"");
     console.log(firstName)
@@ -118,7 +119,7 @@ const TakeAttendance = () => {
     setTimeout(()=>{
       setError(false);
       setMessage(false);
-    }, 3000)
+    }, 5000)
   };
 
   // useEffect(() => {

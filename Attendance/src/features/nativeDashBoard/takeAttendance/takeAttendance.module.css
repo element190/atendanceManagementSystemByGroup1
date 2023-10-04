@@ -1,7 +1,7 @@
 .main{
-    /* padding: 40px 100px; */
-    width: 600px;
-    height: 500px;
+    padding: 40px 100px;
+    /* width: 600px;
+    height: 500px; */
     margin: auto;
     /* box-shadow: 0px 0px 5px 1px rgb(218, 217, 217); */
 }
@@ -29,8 +29,8 @@
 }
 
 .firstContainer{
-    width: 500px;
-    height: 300px;
+    width: 550px;
+    height: 350px;
     margin: auto;
     box-shadow: 0px 0px 5px 1px rgb(218, 217, 217);
     text-align: center;
