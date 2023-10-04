@@ -20,7 +20,7 @@ import AddNative from "./features/dashboards/add_removeNative/addNative/AddNativ
 import RemoveNative from "./features/dashboards/add_removeNative/removeNative/RemoveNative";
 import ResetDeviceForm from "./features/nativeDashBoard/resetDevice/ResetDevice";
 import ConfirmResetPassword  from "./features/auth/confirmPassword/ConfirmResetPassword";
-import PrivateRoute from "./utils/PrivateRoute";
+// import PrivateRoute from "./utils/PrivateRoute";
 import { useState } from "react";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route  element={<PrivateRoute onLogin={isLoggedIn}/>}>
+        {/* <Route  element={<PrivateRoute onLogin={isLoggedIn}/>}> */}
           <Route path="/addAdmin" element={<CreateAdminForm/>} />
           <Route path="/adminHome" element={<AdminHome />} />
           <Route path="/setAttendanceTime" element={<SetTime />} />          
@@ -51,7 +51,7 @@ function App() {
           <Route path="/generateNativeAttendance" element={<NativeGenerateAttendanceReport/>} />
           <Route path="/resetDevice" element={<ResetDeviceForm/>} />   
           <Route path= "/attendanceInGraph" element={<AttendanceInGraph/>} />
-        </Route>
+        {/* </Route> */}
         <Route path="/" element={<Login onLogin={handleLoginStatus} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgottenPassword" element={<ForgottenPassword/>}/>   
