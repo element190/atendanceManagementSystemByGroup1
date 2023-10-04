@@ -8,94 +8,119 @@ import { getIpAddress } from "../../../utils";
 const TakeAttendance = () => {
   const [firstName, setFirstName] = useState("");
   const [message, setMessage] = useState("");
-  const [attendanceStatus, setAttendanceStatus] = useState("")
+  // const [attendanceStatus, setAttendanceStatus] = useState("")
   const [time, setTime] = useState("");
   const [error, setError] = useState("");
-  const [ipAddress, setIpAddress] = useState("")
-
+  const [ipAddress, setIpAddress] = useState("");
 
   const [screenWidth, setScreenWidth] = useState(0);
   const [screenHeight, setScreenHeight] = useState(0);
 
- 
-
-  useEffect(()=>{
+  useEffect(() => {
     async function apiCall() {
-      let ipAddress = await getIpAddress();
-      setIpAddress(ipAddress)
+      const ipAddress = await getIpAddress();
+      setIpAddress(ipAddress);
       console.log("Ip addrress -> ", ipAddress);
     }
-  
     apiCall();
-    const firstName = sessionStorage.getItem("firstName");
+    const firstNameWithQoute = sessionStorage.getItem("firstName");
+    // const firstName = sessionStorage.getItem("firstName");
+    const firstName = firstNameWithQoute.slice(1, -1);
+    // const firstName = firstNameWithQoute.replace(/"/g,"");
+    console.log(firstName)
+
     setFirstName(firstName);
-  },[])
+  }, []);
 
-    useEffect(() => {
-      
-      setInterval(() => {
-        setTime(getTime());
-      }, 1000);
-    }, []);
+  useEffect(() => {
+    setInterval(() => {
+      setTime(getTime());
+    }, 1000);
+  }, []);
 
-    function getTime() {
-      const now = new Date();
-      return now.toLocaleString("en-Us", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      });
-    }
+  function getTime() {
+    const now = new Date();
+    return now.toLocaleString("en-Us", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+  }
 
-    useEffect(() => {
-      const screenWidth = window.screen.width.toString();
-      const screenHeight = window.screen.height.toString();
+  useEffect(() => {
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
 
-      setScreenWidth(screenWidth);
-      setScreenHeight(screenHeight);
-    }, []); 
+    setScreenWidth(screenWidth);
+    setScreenHeight(screenHeight);
+  }, []);
 
   const onClickHandler = async (e) => {
-    e.preventDefault;
+    // e.preventDefault;
 
-    setAttendanceStatus("PRESENT");
-    const semicolonEmail = sessionStorage.getItem('semicolonEmail')
-    
-    console.log(attendanceStatus)
+    // setAttendanceStatus("PRESENT");
+    const jwtToken = sessionStorage.getItem("jwtToken");
+    const email = sessionStorage.getItem("semicolconEmail");
+
+    // console.log(attendanceStatus)
 
     const userDetails = {
-      attendanceStatus: attendanceStatus,
-      semicolonEmail: semicolonEmail,
-      ipAddress : ipAddress,
+      // attendanceStatus: attendanceStatus,
+      // jwtToken: jwtToken,
+      semicolonEmail: email,
       screenWidth: screenWidth,
       screenHeight: screenHeight,
+      ipAddress: ipAddress
     };
 
+    // const headers = {
+    //   Authorization: `Bearer ${jwtToken}`,
+    //   "Content-Type": "application/json",
+    // };
+
     console.log("Data sent successfully:", userDetails);
-    console.log("Data sent successfully:", semicolonEmail);
 
     try {
       const response = await axios.post(
         "https://elitestracker-production.up.railway.app/api/v1/natives/takeAttendance",
-        userDetails
+        userDetails,
+        // { headers }
       );
-      console.log("Data sent successfully:", response);
-      
-      console.log("Data sent successfully:", response.data);
-      console.log("response", response.status);
-      setMessage(response.message)
-      setMessage(response.data.message)
 
-      } catch (error) {
-        console.log(error.response);
-        setError(error.response.data.data);
+      if (response) {
+        console.log("Data sent successfully:", response);
 
-        // console.log(error);
+        console.log("Data sent successfully:", response.data);
+        console.log("response", response.status);
+        setMessage(response.data.data);
+      } else {
+        throw new Error("Network Error");
       }
-    };
+    } catch (error) {
+      console.log(error);
+      if (error.message === "Network Error") {
+        setError(error.message);
+      } else {
+        setError(error.response.data.data);
+      }
+      // console.log(error.message);
+      // console.log(error.response);
+      // setError(error.response);
+      // setError(error.message);
+      // setError(error.response.data.data);
+
+      // console.log(error);
+    }
+
+    setTimeout(()=>{
+      setError(false);
+      setMessage(false);
+    }, 5000)
+  };
 
   // useEffect(() => {
   //   const fetchCurrentTimeAndDate = async () => {
@@ -121,14 +146,16 @@ const TakeAttendance = () => {
     <div className={classes.flex}>
       <NativeSideBar />
       <div className={classes.main}>
-        <h1>Welcome, {firstName} </h1>
-        <h2 className={classes.time}>{time}</h2>
-        <p>Please, take your attendance</p>
-        <Button onClick={onClickHandler} className={classes.button}>
-          Take Attendance
-        </Button>
-        {message && <p className={classes.message}>{message}</p>}
-        {error && <p className={classes.message}>{error}</p>}
+        <div className={classes.firstContainer}>
+          <h1>Welcome, {firstName} </h1>
+          <h2 className={classes.time}>{time}</h2>
+          <p>Please, take your attendance</p>
+          <Button onClick={onClickHandler} className={classes.button}>
+            Mark Attendance
+          </Button>
+          {message && <p className={classes.message}>{message}</p>}
+          {error && <p className={classes.message}>{error}</p>}
+        </div>
       </div>
     </div>
   );

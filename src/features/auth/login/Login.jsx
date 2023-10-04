@@ -122,10 +122,10 @@ import AuthImage from "../../reusables/AuthImages";
 import Card from "../../UI/card/Card";
 import Button from "../../UI/button/Button";
 import { useNavigate, Link } from "react-router-dom";
-import semiImage from "../../../assests/images/semi.png";
+// import semiImage from "../../../assests/images/semi.png";
 import axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
   const initialValue = {
     email: "",
     password: "",
@@ -133,6 +133,7 @@ const Login = () => {
 
   const [data, setData] = useState(initialValue);
   const [error, setError] = useState(null);
+  const [networkError, setNetworkError] = useState("");
   const navigate = useNavigate();
 
   const onChangleHandler = (e) => {
@@ -144,37 +145,54 @@ const Login = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
+    
     const userDetails = {
       semicolonEmail: data.email,
       password: data.password,
     };
+
+    console.log(userDetails)
 
     try {
       const response = await axios.post(
         "https://elitestracker-production.up.railway.app/api/v1/user/loginUser",
         userDetails
       );
-      console.log(response.data)
+      console.log(response)
       console.log( JSON.stringify(response));
       if(response.status === 200){
-        const email = JSON.stringify(response.data.semicolonEmail);
-        sessionStorage.setItem('semicolonEmail', email.trim())
-        sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
-      }
-
-      if (response.data.semicolonEmail.includes('native')) {
-        console.log('I am here');
-        navigate('/native/takeAttendance');
+        const jwtToken = JSON.stringify(response.data.jwtToken);
+        console.log(jwtToken)
+        sessionStorage.setItem("jwtToken", jwtToken);
+        sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName));
+        sessionStorage.setItem('semicolconEmail', JSON.stringify(response.data.semicolonEmail));
+        sessionStorage.setItem('isLoggedIn', JSON.stringify(response.data.loggedIn));
+        
+        if (response.data.semicolonEmail.includes("native")) {
+          console.log("I am here");
+          navigate("/native/takeAttendance");
+        } else {
+          navigate("/adminHome");
+        }
       } else {
-        navigate('/adminHome');
-      }
+         throw new Error("Network Error");
+       }
     } catch (error) {
       console.log(error)
-      setError(error.response.data.data);
-      console.log(error.response.data.data)
+      
+      if(error.message === "Network Error"){
+        setNetworkError(error.message);
+      }else{
+        setError(error.response.data.data);
+      }
     }
+     
+    //  console.log(typeof email);
+    //  console.log(email.length);
+
   };
+
+ 
 
   const onClickHandler = () => {
     navigate("/Signup");
@@ -197,6 +215,7 @@ const Login = () => {
           <p className={classes.loginText}>LOGIN</p>
           <form action="" onSubmit={onSubmitHandler} className={classes.form}>
             {error && <p className={classes.error}>{error}</p>}
+            {networkError && <p className={classes.error}>{networkError}</p>}
             <label htmlFor="">
               Email <span>*</span>
             </label>

@@ -1,5 +1,9 @@
 .main{
     padding: 40px 100px;
+    /* width: 600px;
+    height: 500px; */
+    margin: auto;
+    /* box-shadow: 0px 0px 5px 1px rgb(218, 217, 217); */
 }
 
 .flex{
@@ -8,7 +12,7 @@
 
 .main p{
     font-size: 25px;
-     padding: 40px 0px 30px 0px;
+    padding: 40px 0px 30px 0px;
 }
 
 .time{
@@ -19,10 +23,22 @@
     font-size: 25px;
     color: red;
     font-weight: 600;
+    text-align: center;
+    width: 500px;
+    /* margin-left: 75px; */
+}
+
+.firstContainer{
+    width: 550px;
+    height: 350px;
+    margin: auto;
+    box-shadow: 0px 0px 5px 1px rgb(218, 217, 217);
+    text-align: center;
+    padding: 40px;
 }
 
 .button{
-    width: 150px;
+    width: 200px;
     height: 45px;
     background: rgb(247,46,46);
     color: white;
@@ -31,7 +47,6 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    margin-left: 75px;
 }
 
 /* .button:hover{
@@ -39,3 +54,33 @@
     background: rgb(228, 227, 227);
     font-weight: 800;
 } */
+
+/* @media screen and (min-width: 900px){
+   .flex{
+        display: flex;
+    }
+
+}
+
+
+@media screen and (max-width: 681px){
+   .firstContainer{
+        width: 350px;
+        height: 300px;
+        margin: auto;
+        box-shadow: 0px 0px 5px 1px rgb(218, 217, 217);
+        text-align: center;
+        margin-top: -550px;
+    }
+
+    .main{
+        width: 95vw;
+        height: 500px;
+    }
+
+    .main h1{
+        font-size: 25px;
+    }
+} */
+
+
