@@ -38,10 +38,12 @@ const NativeSideBar = () => {
           </Link>
         </div>
         <div className={classes.linkContainer}>
-          <Link to={"/"} className={classes.LinkLogout}>
-            <FontAwesomeIcon icon={faRightFromBracket} />
-            <p>Logout</p>
-          </Link>
+          <div className={classes.LinkLogoutContain}>
+            <Link to={"/"} className={classes.LinkLogout}>
+              <FontAwesomeIcon icon={faRightFromBracket} />
+              <p>Logout</p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

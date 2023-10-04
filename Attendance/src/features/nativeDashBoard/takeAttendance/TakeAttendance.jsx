@@ -24,6 +24,7 @@ const TakeAttendance = () => {
     }
     apiCall();
     const firstNameWithQoute = sessionStorage.getItem("firstName");
+    // const firstName = sessionStorage.getItem("firstName");
     const firstName = firstNameWithQoute.slice(1, -1);
     // const firstName = firstNameWithQoute.replace(/"/g,"");
     console.log(firstName)
