@@ -72,6 +72,7 @@
 .error{
     color: red;
     font-size: 18px;
+    text-align: center;
 }
 
 @media screen and (min-width: 1300px) {
@@ -80,7 +81,7 @@
         grid-template-columns: 3fr 2fr;
     }
     .form input{
-        font-size: 30px;
+        font-size: 25px;
     }
 }
 

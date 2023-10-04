@@ -2,11 +2,20 @@ import Button from "../../UI/button/Button";
 import AuthImage from "../../reusables/AuthImages";
 import classes from './confirmationCode.module.css';
 import semiImage from '../../../assests/images/semi.png'
+import { useNavigate } from "react-router-dom";
 
 const ConfirmForgottenPasswordCode = () => {
+
+
+  const navigate = useNavigate();
+
+  const submitHandler = () =>{
+    navigate("/resetPassword");
+  }
+
   return (
     <div className={classes.mainContainer}>
-      <AuthImage />
+      <AuthImage/>
       <div className={classes.formContainer}>
         {/* <div className={classes.flexLogoText}>
           <div className={classes.logo}>
@@ -16,7 +25,7 @@ const ConfirmForgottenPasswordCode = () => {
           <h1>SEMICOLON</h1>
         </div> */}
         <p>Confirmation Code</p>
-        <form action="">
+        <form action="" onSubmit={submitHandler}>
           <div className={classes.form}>
             <input type="text" maxlength="1" required />
             <input type="text" maxlength="1" required />
