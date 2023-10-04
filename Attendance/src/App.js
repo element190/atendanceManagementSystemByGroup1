@@ -22,6 +22,7 @@ import ResetDeviceForm from "./features/nativeDashBoard/resetDevice/ResetDevice"
 import ConfirmResetPassword  from "./features/auth/confirmPassword/ConfirmResetPassword";
 import PrivateRoute from "./utils/PrivateRoute";
 
+
 function App() {
 
   return (
