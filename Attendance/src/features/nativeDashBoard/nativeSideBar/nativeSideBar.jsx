@@ -5,37 +5,42 @@ import {faUserCheck, faClockRotateLeft, faRightFromBracket, faChartSimple, faCom
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const NativeSideBar = () => {
+
   return (
     <div className={classes.sideBar}>
       <div className={classes.logo}>
-        {/* <h2>{semiImage}</h2> */}
         <img src={semiImage} alt="Semicolon image" />
         <h1>SEMICOLON</h1>
       </div>
       <div className={classes.sideBarItems}>
         <div className={classes.linkContainer}>
           <Link to={"/native/takeAttendance"} className={classes.Link}>
-              <FontAwesomeIcon icon={faUserCheck} /><p>Take Attendance</p>
+            <FontAwesomeIcon icon={faUserCheck} />
+            <p>Take Attendance</p>
           </Link>
         </div>
         <div className={classes.linkContainer}>
           <Link to={"/generateNativeAttendance"} className={classes.Link}>
-              <FontAwesomeIcon icon={faClockRotateLeft} /><p>Generate Attendance</p>
+            <FontAwesomeIcon icon={faClockRotateLeft} />
+            <p>Generate Attendance</p>
           </Link>
         </div>
         <div className={classes.linkContainer}>
-          <Link to={"/checkAttendanceHistory"} className={classes.Link}>
-              <FontAwesomeIcon icon={faChartSimple} /><p>Check Attendance History</p>
+          <Link to={"/attendanceInGraph"} className={classes.Link}>
+            <FontAwesomeIcon icon={faChartSimple} />
+            <p>Check Attendance History</p>
           </Link>
         </div>
         <div className={classes.linkContainer}>
           <Link to={"/resetDevice"} className={classes.Link}>
-              <FontAwesomeIcon icon={faComputer} /><p>Reset Device</p>
+            <FontAwesomeIcon icon={faComputer} />
+            <p>Reset Device</p>
           </Link>
         </div>
         <div className={classes.linkContainer}>
           <Link to={"/"} className={classes.LinkLogout}>
-              <FontAwesomeIcon icon={faRightFromBracket} /><p>Logout</p>
+            <FontAwesomeIcon icon={faRightFromBracket} />
+            <p>Logout</p>
           </Link>
         </div>
       </div>

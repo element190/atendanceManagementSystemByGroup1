@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import classes from "./resetDevice.module.css";
+import NativeSideBar from "../nativeSideBar/nativeSideBar";
 
 const ResetDeviceForm = () => {
   const [adminEmail, setAdminEmail] = useState("");
@@ -72,37 +73,42 @@ const ResetDeviceForm = () => {
   };
 
   return (
-    <div className={classes.myFormBox}>
-      <h1>Reset Device</h1>
-      <form onSubmit={handleSubmit}>
-        <div className={classes.divToFlex}>
-          <div>
-            <input
-              className="admin-email"
-              placeholder="Admin email"
-              type="text"
-              value={adminEmail}
-              onChange={(e) => setAdminEmail(e.target.value)}
-            />
-            {errors.adminEmail && <p>{errors.adminEmail}</p>}
-            {ok && <p>{ok}</p>}
+    <div className={classes.main}>
+      <NativeSideBar />
+      <div className={classes.myFormBox}>
+        <h1>Reset Device</h1>
+        <form onSubmit={handleSubmit}>
+          <div className={classes.divToFlex}>
+            <label htmlFor="">Admin email <span>*</span></label>
+            <div className={classes.input}>
+              <input
+                className="admin-email"
+                placeholder="Admin email"
+                type="text"
+                value={adminEmail}
+                onChange={(e) => setAdminEmail(e.target.value)}
+              />
+              {errors.adminEmail && <p>{errors.adminEmail}</p>}
+              {ok && <p>{ok}</p>}
+            </div>
+            <label htmlFor="">Admin password <span>*</span></label>
+            <div className={classes.input}>
+              <input
+                //   className="admin-password"
+                placeholder="Admin password"
+                type="text"
+                value={adminPassWord}
+                onChange={(e) => setAdminPassword(e.target.value)}
+              />
+              {errors.adminPassWord && <p>{errors.adminPassWord}</p>}
+              {ok && <p>{ok}</p>}
+            </div>
           </div>
-          <div>
-            <input
-            //   className="admin-password"
-              placeholder="Admin password"
-              type="text"
-              value={adminPassWord}
-              onChange={(e) => setAdminPassword(e.target.value)}
-            />
-            {errors.adminPassWord && <p>{errors.adminPassWord}</p>}
-            {ok && <p>{ok}</p>}
-          </div>
-        </div>
-        <button type="submit" className={classes.submit}>
-          Submit
-        </button>
-      </form>
+          <button type="submit" className={classes.submit}>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

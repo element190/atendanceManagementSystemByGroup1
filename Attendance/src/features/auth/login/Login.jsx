@@ -122,10 +122,10 @@ import AuthImage from "../../reusables/AuthImages";
 import Card from "../../UI/card/Card";
 import Button from "../../UI/button/Button";
 import { useNavigate, Link } from "react-router-dom";
-import semiImage from "../../../assests/images/semi.png";
+// import semiImage from "../../../assests/images/semi.png";
 import axios from "axios";
 
-const Login = () => {
+const Login = (props) => {
   const initialValue = {
     email: "",
     password: "",
@@ -134,6 +134,7 @@ const Login = () => {
   const [data, setData] = useState(initialValue);
   const [error, setError] = useState(null);
   const [networkError, setNetworkError] = useState("");
+  const [isLoggedIn, setIsLogged] = useState("")
   const navigate = useNavigate();
 
   const onChangleHandler = (e) => {
@@ -145,7 +146,7 @@ const Login = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
+    
     const userDetails = {
       semicolonEmail: data.email,
       password: data.password,
@@ -164,23 +165,38 @@ const Login = () => {
         const jwtToken = JSON.stringify(response.data.jwtToken);
         console.log(jwtToken)
         sessionStorage.setItem("jwtToken", jwtToken);
-        sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName))
-      }
-
-
-      if (response.data.semicolonEmail.includes('native')) {
-        console.log('I am here');
-        navigate('/native/takeAttendance');
+        sessionStorage.setItem('firstName', JSON.stringify(response.data.firstName));
+        sessionStorage.setItem('semicolconEmail', JSON.stringify(response.data.semicolonEmail));
+        sessionStorage.setItem('isLoggedIn', JSON.stringify(response.data.loggedIn));
+        setIsLogged(response.data.loggedIn)
+        
+        if (response.data.semicolonEmail.includes("native")) {
+          console.log("I am here");
+          navigate("/native/takeAttendance");
+        } else {
+          navigate("/adminHome");
+        }
       } else {
-        navigate('/adminHome');
-      }
+         throw new Error("Network Error");
+       }
     } catch (error) {
       console.log(error)
-      setError(error.response.data.data);
-      // setNetworkError(error.message)
-      console.log(error.response.data.data)
+      
+      if(error.message === "Network Error"){
+        setNetworkError(error.message);
+      }else{
+        setError(error.response.data.data);
+      }
     }
+     
+    //  console.log(typeof email);
+    //  console.log(email.length);
+
+    props.onLogin(isLoggedIn)
+    console.log("This is isLogged in login.js", isLoggedIn);
   };
+
+ 
 
   const onClickHandler = () => {
     navigate("/Signup");
